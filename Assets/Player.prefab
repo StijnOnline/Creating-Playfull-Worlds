@@ -476,6 +476,7 @@ MonoBehaviour:
   laser: {fileID: 3428212366072483592, guid: 3e918f5eb8fefe94a9b1241024188b0a, type: 3}
   muzzle_pos: {fileID: 49873701594875622}
   muzzleflash: {fileID: 0}
+  preview: {fileID: 6601407648288299133, guid: 05bfcd4ad78fe6b4c88e7192f16d1681, type: 3}
 --- !u!1 &8252598631482596473
 GameObject:
   m_ObjectHideFlags: 0
