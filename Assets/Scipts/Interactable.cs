@@ -5,20 +5,17 @@ public class Interactable : MonoBehaviour
 {
     [HideInInspector] public int type; //"Button", "Lever", "Gate", "Player Barrier", "Laser Barrier"
     public int color = 0;
-    public GameObject[] color_objects;
+    public Material change_material;
     [HideInInspector] private float barrier_alpha = 0.5f;
     Vector3 start_pos;
 
     void Start() {
 
         start_pos = transform.position;
-        foreach(GameObject ob in color_objects) {
-            Material mat = ob.GetComponent<Renderer>().material;
-            Color setcolor = GameManager.colors[color];
-            if(ob.tag == "Barrier") { setcolor.a = barrier_alpha; }
-            mat.SetColor("_Color", setcolor);
-        }
-
+        
+        Color setcolor = GameManager.colors[color];
+        if (tag == "Barrier") { setcolor.a = barrier_alpha; }
+        change_material.SetColor("_Color", setcolor);
     }
 
     void Update() {
