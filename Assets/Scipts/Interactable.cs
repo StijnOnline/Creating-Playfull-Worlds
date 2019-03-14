@@ -15,7 +15,11 @@ public class Interactable : MonoBehaviour
         
         Color setcolor = GameManager.colors[color];
         if (tag == "Barrier") { setcolor.a = barrier_alpha; }
-        change_material.SetColor("_Color", setcolor);
+
+        if (change_material != null)
+        {
+            GetComponent<Renderer>().materials[1].SetColor("_Color", setcolor); ;
+        }
     }
 
     void Update() {
@@ -31,6 +35,11 @@ public class Interactable : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetpos, 0.1f);
         }
 
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        GameManager.color_states[color] = false;
     }
 }
 
