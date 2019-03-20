@@ -8,30 +8,29 @@ public class Weapon : MonoBehaviour {
 
     public int color = 0;
 
-    public GameObject laser;
+    Camera fpscam;
+    Material change_material;
     public Transform muzzle_pos;
-
     public GameObject muzzleflash;
-    
-	Camera fpscam;
-	AudioSource audiosource;
-    int layerMask;
 
+    public GameObject laser;
+    public GameObject preview;
     LineRenderer lr;
+    int layerMask;
     float counter, lineDrawSpeed;
+    
+    public AudioSource SFXlaser;
+    public AudioSource SFXgunswitch;
 
     private IEnumerator coroutine;
 
-    public GameObject preview;
-
-    public AudioSource SFXlaser;
-
-
     void Awake(){
 		fpscam = GetComponent<Camera> ();
-		audiosource = GetComponent<AudioSource> ();
-
-        UpdateHUD();
+        foreach (Material mat in GetComponentInChildren<Renderer>().materials) {
+            if (mat.name.Contains("ChangeMaterial")) { change_material = mat;
+                change_material.SetColor("_Color", GameManager.colors[color]);
+            }
+        }
 
         layerMask = 1 << LayerMask.NameToLayer("RayCastIgnore");
         layerMask = ~layerMask;
@@ -47,14 +46,16 @@ public class Weapon : MonoBehaviour {
             if (color > GameManager.colors.Length - 1) {
                 color = 0;
             }
-            UpdateHUD();
+            change_material.SetColor("_Color", GameManager.colors[color]);
+            SFXgunswitch.Play();
         }
         if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f) {
             color--;
             if (color < 0) {
                 color = GameManager.colors.Length - 1;
             }
-            UpdateHUD();
+            change_material.SetColor("_Color", GameManager.colors[color]);
+            SFXgunswitch.Play();
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -71,12 +72,6 @@ public class Weapon : MonoBehaviour {
         
 
     }
-
-    void UpdateHUD() {
-        Image HUD_color = GameManager.HUD.transform.Find("Color").GetComponent<Image>();
-        HUD_color.color = GameManager.colors[color];
-    }
-
 
     void Shoot() {
         SFXlaser.Play();
