@@ -77,7 +77,12 @@ public class Weapon : MonoBehaviour {
 
 
     void Shoot() { 
-        if (muzzleflash != null && muzzle_pos != null) { Destroy(Instantiate(muzzleflash, muzzle_pos),1f); }
+        if (muzzleflash != null && muzzle_pos != null) {
+            GameObject ob = Instantiate(muzzleflash, muzzle_pos);
+            var ps = ob.GetComponent<ParticleSystem>().main;
+            ps.startColor = GameManager.colors[color];
+            Destroy(ob, 1f);
+        }
         
         RaycastHit hit;
         if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit,Mathf.Infinity, layerMask))
@@ -87,10 +92,7 @@ public class Weapon : MonoBehaviour {
 
             lsr.GetComponent<Laser>().positions[0] = muzzle_pos.position;
             lsr.GetComponent<Laser>().positions[1] = hit.point;
-
-            //Destroy(lsr, 1f);
-
-            
+                                   
             //check for barriers before mirror
             while (hit.collider.tag == "Barrier") {
                 GameObject ob = hit.collider.gameObject;
