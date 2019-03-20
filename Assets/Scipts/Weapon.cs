@@ -24,6 +24,8 @@ public class Weapon : MonoBehaviour {
 
     public GameObject preview;
 
+    public AudioSource SFXlaser;
+
 
     void Awake(){
 		fpscam = GetComponent<Camera> ();
@@ -76,7 +78,9 @@ public class Weapon : MonoBehaviour {
     }
 
 
-    void Shoot() { 
+    void Shoot() {
+        SFXlaser.Play();
+
         if (muzzleflash != null && muzzle_pos != null) {
             GameObject ob = Instantiate(muzzleflash, muzzle_pos);
             var ps = ob.GetComponent<ParticleSystem>().main;

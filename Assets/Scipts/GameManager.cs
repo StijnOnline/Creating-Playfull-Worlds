@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         color_states = new bool[set_colors.Length];
         laserspeed = set_laserspeed;
 
-        player = Instantiate(player, spawn_pos.position, Quaternion.identity);
+        player = Instantiate(player, spawn_pos.position, spawn_pos.rotation);
         topCamera = Instantiate(topCamera, spawn_pos.position + new Vector3(0,10,0), Quaternion.Euler(0,90,0));
         topCamera.SetActive(false);
 

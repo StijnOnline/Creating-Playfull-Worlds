@@ -1,54 +1,37 @@
 fileFormatVersion: 2
-guid: 47cc8479edbd4774abad811d0aba3017
+guid: 9446cd395b7b1be449cd18fe33c7fa1d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: pCylinder1
-    100004: pCylinder2
-    100006: pCylinder3
-    100008: pCylinder4
-    100010: pCylinder6
-    100012: pCylinder7
-    100014: polySurface8
-    100016: polySurface9
-    400000: //RootNode
-    400002: pCylinder1
-    400004: pCylinder2
-    400006: pCylinder3
-    400008: pCylinder4
-    400010: pCylinder6
-    400012: pCylinder7
-    400014: polySurface8
-    400016: polySurface9
-    2100000: lambert1
-    2300000: pCylinder1
-    2300002: pCylinder2
-    2300004: pCylinder3
-    2300006: pCylinder4
-    2300008: pCylinder6
-    2300010: pCylinder7
-    2300012: polySurface8
-    2300014: polySurface9
-    3300000: pCylinder1
-    3300002: pCylinder2
-    3300004: pCylinder3
-    3300006: pCylinder4
-    3300008: pCylinder6
-    3300010: pCylinder7
-    3300012: polySurface8
-    3300014: polySurface9
-    4300000: pCylinder1
-    4300002: pCylinder2
-    4300004: pCylinder3
-    4300006: pCylinder4
-    4300008: polySurface8
-    4300010: pCylinder6
-    4300012: polySurface9
-    4300014: pCylinder7
-    7400000: Take 001
+    100000: Circle
+    100002: Cube
+    100004: Cube_001
+    100006: //RootNode
+    400000: Circle
+    400002: Cube
+    400004: Cube_001
+    400006: //RootNode
+    2100000: trigger_color
+    2100002: trigger
+    2100004: Material_003
+    2100006: Material_004
+    2100008: weapon
+    2100010: signal
+    2100012: laser_beam
+    2100014: loop
+    2100016: boosters
+    2100018: ChangeMaterial
+    2300000: Circle
+    2300002: Cube
+    2300004: Cube_001
+    3300000: Circle
+    3300002: Cube
+    3300004: Cube_001
+    4300000: Cube_001
+    4300002: Cube
+    4300004: Circle
+    7400000: Default Take
     9500000: //RootNode
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
