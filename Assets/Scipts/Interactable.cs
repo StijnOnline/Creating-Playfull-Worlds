@@ -3,7 +3,8 @@ using UnityEditor;
 
 public class Interactable : MonoBehaviour
 {
-    [HideInInspector] public int type; //"Button", "Lever", "Gate", "Player Barrier", "Laser Barrier"
+    public enum Type { Button, Lever, Gate, inverse_Gate, Player_Barrier, Laser_Barrier };
+    public Type type;
     public int color = 0;
     public Material change_material;
     [HideInInspector] private float barrier_alpha = 0.5f;
@@ -20,9 +21,10 @@ public class Interactable : MonoBehaviour
 
     void Update() {
 
-        if(type == 2) {
+        if(type == Type.Gate || type == Type.inverse_Gate) {
+            bool state = (GameManager.color_states[color] || type == Type.inverse_Gate);
             Vector3 targetpos;
-            if (GameManager.color_states[color]) {
+            if (state) {
                 targetpos = new Vector3(transform.position.x, start_pos.y - 2.5f, transform.position.z);
             } else {
                 targetpos = new Vector3(transform.position.x, start_pos.y, transform.position.z); ;
@@ -32,20 +34,4 @@ public class Interactable : MonoBehaviour
         }
 
     }
-}
-
-
-
-[CustomEditor(typeof(Interactable))]
-public class InteractableEditor : Editor { 
-    public override void OnInspectorGUI() {
-        
-        var myScript = target as Interactable;
-
-        string[] types = { "Button", "Lever", "Gate", "Player Barrier", "Laser Barrier" };
-        myScript.type = EditorGUILayout.Popup("Type", myScript.type, types);
-
-        DrawDefaultInspector();
-    }
-
 }

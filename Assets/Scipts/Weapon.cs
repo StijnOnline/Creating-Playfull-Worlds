@@ -95,7 +95,7 @@ public class Weapon : MonoBehaviour {
             while (hit.collider.tag == "Barrier") {
                 GameObject ob = hit.collider.gameObject;
                 Interactable hit_interactable = hit.collider.gameObject.GetComponent<Interactable>();
-                if ((hit_interactable.type == 4 && hit_interactable.color == color) || hit_interactable.type == 3)
+                if ((hit_interactable.type == Interactable.Type.Laser_Barrier && hit_interactable.color == color) || hit_interactable.type == Interactable.Type.Player_Barrier)
                 {
                     ob.layer = LayerMask.NameToLayer("RayCastIgnore");
 
@@ -127,7 +127,7 @@ public class Weapon : MonoBehaviour {
                     while (hit.collider.tag == "Barrier") {
                         GameObject ob = hit.collider.gameObject;
                         Interactable hit_interactable = hit.collider.gameObject.GetComponent<Interactable>();
-                        if ((hit_interactable.type == 4 && hit_interactable.color == color) || hit_interactable.type == 3) {
+                        if ((hit_interactable.type == Interactable.Type.Laser_Barrier && hit_interactable.color == color) || hit_interactable.type == Interactable.Type.Player_Barrier) {
                             ob.layer = LayerMask.NameToLayer("RayCastIgnore");
 
                             if (Physics.Raycast(hit.point, reflectVec, out hit, Mathf.Infinity, layerMask)) {
@@ -193,7 +193,7 @@ public class Weapon : MonoBehaviour {
             while (hit.collider.tag == "Barrier") {
                 GameObject ob = hit.collider.gameObject;
                 Interactable hit_interactable = hit.collider.gameObject.GetComponent<Interactable>();
-                if ((hit_interactable.type == 4 && hit_interactable.color == color) || hit_interactable.type == 3) {
+                if ((hit_interactable.type == Interactable.Type.Laser_Barrier && hit_interactable.color == color) || hit_interactable.type == Interactable.Type.Player_Barrier) {
                     ob.layer = LayerMask.NameToLayer("RayCastIgnore");
 
                     Vector3 incomingVec = fpscam.transform.forward;
@@ -220,7 +220,7 @@ public class Weapon : MonoBehaviour {
                     while (hit.collider.tag == "Barrier") {
                         GameObject ob = hit.collider.gameObject;
                         Interactable hit_interactable = hit.collider.gameObject.GetComponent<Interactable>();
-                        if ((hit_interactable.type == 4 && hit_interactable.color == color) || hit_interactable.type == 3) {
+                        if ((hit_interactable.type == Interactable.Type.Laser_Barrier && hit_interactable.color == color) || hit_interactable.type == Interactable.Type.Player_Barrier) {
                             ob.layer = LayerMask.NameToLayer("RayCastIgnore");
 
                             if (Physics.Raycast(hit.point, reflectVec, out hit, Mathf.Infinity, layerMask)) {
@@ -250,8 +250,8 @@ public class Weapon : MonoBehaviour {
     private IEnumerator Interact(float waitTime,Interactable hit_interactable)
     {
         yield return new WaitForSeconds(waitTime);
-        if (hit_interactable.type == 0) { GameManager.color_states[hit_interactable.color] = true; }
-        if (hit_interactable.type == 1) { GameManager.color_states[hit_interactable.color] = !GameManager.color_states[hit_interactable.color]; }
+        if (hit_interactable.type == Interactable.Type.Button) { GameManager.color_states[hit_interactable.color] = true; }
+        if (hit_interactable.type == Interactable.Type.Lever) { GameManager.color_states[hit_interactable.color] = !GameManager.color_states[hit_interactable.color]; }
     }
 
 }
