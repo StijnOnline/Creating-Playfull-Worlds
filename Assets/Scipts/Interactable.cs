@@ -41,4 +41,12 @@ public class Interactable : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            GameManager.color_states[color] = false;
+        }
+    }
 }

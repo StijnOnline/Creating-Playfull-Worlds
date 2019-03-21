@@ -13,26 +13,30 @@ public class GameManager : MonoBehaviour
     public static GameObject HUD;
 
     public GameObject player;
-    public Transform spawn_pos;
-
-    public GameObject topCamera;
+    public static GameObject spawn_ob;
 
     public float set_laserspeed;
     public static float laserspeed;
 
     void Awake()
     {
+        if (spawn_ob == null){
+            spawn_ob = new GameObject();
+            spawn_ob.transform.Rotate(0,90,0,Space.Self);
+        }
+        GameObject start = GameObject.Find("Start");
+        DontDestroyOnLoad(spawn_ob);
+        player = Instantiate(player, start.transform.position - spawn_ob.transform.position, spawn_ob.transform.rotation);
+
         colors = set_colors;
         HUD = set_HUD;
         color_states = new bool[set_colors.Length];
         laserspeed = set_laserspeed;
 
-        player = Instantiate(player, spawn_pos.position, spawn_pos.rotation);
-        topCamera = Instantiate(topCamera, spawn_pos.position + new Vector3(0,10,0), Quaternion.Euler(0,90,0));
-        topCamera.SetActive(false);
 
     }
-    
+
+    /*
     void Update()
     {
         //Debug.Log(color_states[0] + " " + color_states[1]);
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
     void ToggleView() {
         if (topCamera.activeSelf) {
             topCamera.SetActive(false);
@@ -50,5 +55,5 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FirstPersonController>().enabled = false;
         }
     }
-
+    */
 }

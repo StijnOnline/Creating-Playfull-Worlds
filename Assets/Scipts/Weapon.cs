@@ -24,13 +24,19 @@ public class Weapon : MonoBehaviour {
 
     private IEnumerator coroutine;
 
-    void Awake(){
+    void Start(){
 		fpscam = GetComponent<Camera> ();
-        foreach (Material mat in GetComponentInChildren<Renderer>().materials) {
-            if (mat.name.Contains("ChangeMaterial")) { change_material = mat;
-                change_material.SetColor("_Color", GameManager.colors[color]);
+
+        foreach (Material mat in GetComponentInChildren<Renderer>().materials)
+        {
+            if (mat.name.Contains("ChangeMaterial"))
+            {
+                change_material = mat;
+                
             }
         }
+        change_material.SetColor("_Color", GameManager.colors[color]);
+
 
         layerMask = 1 << LayerMask.NameToLayer("RayCastIgnore");
         layerMask = ~layerMask;
