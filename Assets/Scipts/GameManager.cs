@@ -35,25 +35,4 @@ public class GameManager : MonoBehaviour
 
 
     }
-
-    /*
-    void Update()
-    {
-        //Debug.Log(color_states[0] + " " + color_states[1]);
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            ToggleView();
-        }
-    }
-
-    
-    void ToggleView() {
-        if (topCamera.activeSelf) {
-            topCamera.SetActive(false);
-            player.GetComponent<FirstPersonController>().enabled = true;
-        } else {
-            topCamera.SetActive(true);
-            player.GetComponent<FirstPersonController>().enabled = false;
-        }
-    }
-    */
 }

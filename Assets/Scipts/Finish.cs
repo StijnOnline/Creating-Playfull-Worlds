@@ -10,10 +10,17 @@ public class Finish : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log(transform.position - other.transform.position);
             GameManager.spawn_ob.transform.position = transform.position - other.transform.position;
             GameManager.spawn_ob.transform.rotation = other.transform.rotation;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if(SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 1);
+            } else {
+                PlayerPrefs.SetInt("Level", 0);
+                SceneManager.LoadScene(0);
+            }
+            
+            
         }
     }
 }

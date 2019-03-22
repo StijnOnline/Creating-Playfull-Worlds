@@ -29,7 +29,7 @@ public class Interactable : MonoBehaviour
     void Update() {
 
         if(type == Type.Gate || type == Type.inverse_Gate) {
-            bool state = (GameManager.color_states[color] || type == Type.inverse_Gate);
+            bool state = (GameManager.color_states[color] ^ type == Type.inverse_Gate); // ^ = XOR
             Vector3 targetpos;
             if (state) {
                 targetpos = new Vector3(door.position.x, start_pos.y - 2.5f, door.position.z);
