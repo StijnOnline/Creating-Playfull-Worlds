@@ -5,7 +5,7 @@ public class Interactable : MonoBehaviour
     public enum Type { Button, Lever, Gate, inverse_Gate, Player_Barrier, Laser_Barrier };
     public Type type;
     public int color = 0;
-    [HideInInspector] private float barrier_alpha = 0.5f;
+    [HideInInspector] private float barrier_alpha = 0.25f;
     Vector3 start_pos;
     Transform door;
 

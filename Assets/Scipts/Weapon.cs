@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
+using UnityStandardAssets.Characters.FirstPerson;
+
 public class Weapon : MonoBehaviour {
 
     public int color = 0;
@@ -45,10 +48,10 @@ public class Weapon : MonoBehaviour {
 
     void Update() {
 
-        if (Input.GetKey(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.M)) {
 
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            //disable mouselock (made m_MouseLook public in FirstPersonController because i couldn't get a reference otherwise)
+            transform.parent.GetComponent<FirstPersonController>().m_MouseLook.SetCursorLock(false);
 
             SceneManager.LoadScene(0);
         }
@@ -94,7 +97,7 @@ public class Weapon : MonoBehaviour {
             ps.startColor = GameManager.colors[color];
             Destroy(ob, 1f);
         }
-        
+
         RaycastHit hit;
         if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit,Mathf.Infinity, layerMask))
         {
@@ -103,7 +106,12 @@ public class Weapon : MonoBehaviour {
 
             lsr.GetComponent<Laser>().positions[0] = muzzle_pos.position;
             lsr.GetComponent<Laser>().positions[1] = hit.point;
-                                   
+            
+            if (lsr.GetComponent<ParticleSystem>()) {
+                var ps = lsr.GetComponent<ParticleSystem>().main;
+                ps.startColor = GameManager.colors[color];
+            }
+
             //check for barriers before mirror
             while (hit.collider.tag == "Barrier") {
                 GameObject ob = hit.collider.gameObject;

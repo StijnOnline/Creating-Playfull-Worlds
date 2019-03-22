@@ -74,16 +74,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void InternalLockUpdate()
         {
-            if(Input.GetKeyUp(KeyCode.Escape))
-            {
+            if (Input.GetKeyUp(KeyCode.Escape)) {
                 m_cursorIsLocked = false;
-            }
-            /* commented this away because it conflicted with my pause menu - Stijn
-            else if(Input.GetMouseButtonUp(0))
-            {
+            } else if (Input.GetMouseButtonUp(0)) {
                 m_cursorIsLocked = true;
-            }
-            */
+            }            
             if (m_cursorIsLocked)
             {
                 Cursor.lockState = CursorLockMode.Locked;
