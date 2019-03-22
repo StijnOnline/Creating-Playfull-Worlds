@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class Weapon : MonoBehaviour {
 
@@ -47,7 +45,15 @@ public class Weapon : MonoBehaviour {
 
     void Update() {
 
-        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f) {
+        if (Input.GetKey(KeyCode.Escape)) {
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetAxisRaw("Mouse ScrollWheel") > 0f) {
             color++;
             if (color > GameManager.colors.Length - 1) {
                 color = 0;

@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
 
 public class Finish : MonoBehaviour
 {
@@ -17,6 +14,10 @@ public class Finish : MonoBehaviour
                 PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 1);
             } else {
                 PlayerPrefs.SetInt("Level", 0);
+                
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+
                 SceneManager.LoadScene(0);
             }
             
