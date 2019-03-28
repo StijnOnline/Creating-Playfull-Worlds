@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnityStandardAssets.Characters.FirstPerson;
+
 public class Finish : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
@@ -14,9 +16,8 @@ public class Finish : MonoBehaviour
                 PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 1);
             } else {
                 PlayerPrefs.SetInt("Level", 0);
-                
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
+
+                other.gameObject.GetComponent<FirstPersonController>().m_MouseLook.SetCursorLock(false);
 
                 SceneManager.LoadScene(0);
             }
