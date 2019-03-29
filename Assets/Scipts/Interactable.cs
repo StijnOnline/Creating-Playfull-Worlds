@@ -9,6 +9,8 @@ public class Interactable : MonoBehaviour
     Vector3 start_pos;
     Transform door;
 
+    public AudioSource doorsound;
+
     void Start() {
         if (type == Type.Gate || type == Type.inverse_Gate) {
             door = transform.GetChild(0);
@@ -28,12 +30,19 @@ public class Interactable : MonoBehaviour
     void Update() {
 
         if(type == Type.Gate || type == Type.inverse_Gate) {
+
+
+
             bool state = (GameManager.color_states[color] ^ type == Type.inverse_Gate); // ^ = XOR
             Vector3 targetpos;
             if (state) {
                 targetpos = new Vector3(door.position.x, start_pos.y - 2.5f, door.position.z);
             } else {
                 targetpos = new Vector3(door.position.x, start_pos.y, door.position.z); ;
+            }
+
+            if(door.position.y - targetpos.y > 2f && !doorsound.isPlaying) {
+                doorsound.Play();
             }
 
             door.position = Vector3.Lerp(door.position, targetpos, 0.1f);

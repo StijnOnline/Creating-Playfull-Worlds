@@ -24,6 +24,8 @@ public class Weapon : MonoBehaviour {
 
     private IEnumerator coroutine;
 
+    public AudioSource interactsound;
+
     void Start(){
 		fpscam = GetComponent<Camera> ();
 
@@ -40,6 +42,10 @@ public class Weapon : MonoBehaviour {
 
         layerMask = 1 << LayerMask.NameToLayer("RayCastIgnore");
         layerMask = ~layerMask;
+<<<<<<< HEAD
+=======
+        
+>>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
     }
 
     void Update() {
@@ -71,7 +77,13 @@ public class Weapon : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
+<<<<<<< HEAD
         }        
+=======
+        }
+        
+        
+>>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
 
     }
 
@@ -172,27 +184,28 @@ public class Weapon : MonoBehaviour {
 
             }
             
-
-            //place laser impact effect
-            /*
-            Transform laser_impact = lsr.transform.Find("LaserImpact");
-            laser_impact.rotation = Quaternion.LookRotation(hit.normal, Vector3.up);
-            laser_impact.position = lr.GetPosition(lr.positionCount - 1);
-            */
-
-
             //set colors
             lr.startColor = GameManager.colors[color];
             lr.endColor = GameManager.colors[color];           
 
         }
+<<<<<<< HEAD
     }   
+=======
+    }
+
+   
+>>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
 
     private IEnumerator Interact(float waitTime,Interactable hit_interactable)
     {
         yield return new WaitForSeconds(waitTime);
         if (hit_interactable.type == Interactable.Type.Button) { GameManager.color_states[hit_interactable.color] = true; }
         if (hit_interactable.type == Interactable.Type.Lever) { GameManager.color_states[hit_interactable.color] = !GameManager.color_states[hit_interactable.color]; }
+
+        if (hit_interactable.type == Interactable.Type.Button || hit_interactable.type == Interactable.Type.Lever) {
+            interactsound.Play();
+        }
     }
 
 }

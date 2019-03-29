@@ -592,7 +592,7 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   HUD: {fileID: 7652966555067240001, guid: 8fb79d7380fa3fc43b218bfe6f2271ec, type: 3}
   player: {fileID: 437273400258754081, guid: 9f5892e194842fb49936767524d87c1a, type: 3}
-  set_laserspeed: 20
+  set_laserspeed: 40
 --- !u!4 &584404222
 Transform:
   m_ObjectHideFlags: 0

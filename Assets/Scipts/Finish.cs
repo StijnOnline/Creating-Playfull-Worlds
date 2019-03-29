@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class Finish : MonoBehaviour
@@ -17,9 +20,8 @@ public class Finish : MonoBehaviour
                 PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 1);
             } else {
                 PlayerPrefs.SetInt("Level", 0);
-                
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
+
+                other.gameObject.GetComponent<FirstPersonController>().m_MouseLook.SetCursorLock(false);
 
                 SceneManager.LoadScene(0);
             }
