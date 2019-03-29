@@ -4,12 +4,15 @@ public class Interactable : MonoBehaviour
 {
     public enum Type { Button, Lever, Gate, inverse_Gate, Player_Barrier, Laser_Barrier };
     public Type type;
+
     public int color = 0;
+
+    //barrier
     [HideInInspector] private float barrier_alpha = 0.25f;
+    //door
     Vector3 start_pos;
     Transform door;
-
-    public AudioSource doorsound;
+    
 
     void Start() {
         if (type == Type.Gate || type == Type.inverse_Gate) {
@@ -39,10 +42,6 @@ public class Interactable : MonoBehaviour
                 targetpos = new Vector3(door.position.x, start_pos.y - 2.5f, door.position.z);
             } else {
                 targetpos = new Vector3(door.position.x, start_pos.y, door.position.z); ;
-            }
-
-            if(door.position.y - targetpos.y > 2f && !doorsound.isPlaying) {
-                doorsound.Play();
             }
 
             door.position = Vector3.Lerp(door.position, targetpos, 0.1f);

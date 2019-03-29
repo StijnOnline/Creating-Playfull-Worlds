@@ -959,23 +959,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 651086713}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!4 &841805654 stripped
-=======
-  m_GameObject: {fileID: 584404220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e94f1eceff91a74585b2499b7ae3466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  set_colors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  HUD: {fileID: 7652966555067240001, guid: 8fb79d7380fa3fc43b218bfe6f2271ec, type: 3}
-  player: {fileID: 437273400258754081, guid: 9f5892e194842fb49936767524d87c1a, type: 3}
-  set_laserspeed: 40
---- !u!4 &584404222
->>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
 Transform:
   m_CorrespondingSourceObject: {fileID: 6070435090686010727, guid: 6a9fe29870558ad48b3626a31f3f72cb,
     type: 3}

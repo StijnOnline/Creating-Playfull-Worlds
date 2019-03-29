@@ -1179,26 +1179,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-<<<<<<< HEAD
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1349717295
 MeshRenderer:
-=======
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e94f1eceff91a74585b2499b7ae3466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  set_colors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  HUD: {fileID: 7652966555067240001, guid: 8fb79d7380fa3fc43b218bfe6f2271ec, type: 3}
-  player: {fileID: 437273400258754081, guid: 9f5892e194842fb49936767524d87c1a, type: 3}
-  set_laserspeed: 40
---- !u!4 &584404222
-Transform:
->>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour {
     LineRenderer lr;
     int layerMask;
     float counter, lineDrawSpeed;
-    
+
     public AudioSource SFXlaser;
     public AudioSource SFXgunswitch;
 
@@ -26,15 +26,13 @@ public class Weapon : MonoBehaviour {
 
     public AudioSource interactsound;
 
-    void Start(){
-		fpscam = GetComponent<Camera> ();
+    void Start() {
+        fpscam = GetComponent<Camera>();
 
-        foreach (Material mat in GetComponentInChildren<Renderer>().materials)
-        {
-            if (mat.name.Contains("ChangeMaterial"))
-            {
+        foreach (Material mat in GetComponentInChildren<Renderer>().materials) {
+            if (mat.name.Contains("ChangeMaterial")) {
                 change_material = mat;
-                
+
             }
         }
         change_material.SetColor("_Color", GameManager.colors[color]);
@@ -42,10 +40,6 @@ public class Weapon : MonoBehaviour {
 
         layerMask = 1 << LayerMask.NameToLayer("RayCastIgnore");
         layerMask = ~layerMask;
-<<<<<<< HEAD
-=======
-        
->>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
     }
 
     void Update() {
@@ -74,18 +68,15 @@ public class Weapon : MonoBehaviour {
             change_material.SetColor("_Color", GameManager.colors[color]);
             SFXgunswitch.Play();
         }
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Input.GetMouseButtonDown(0)) {
             Shoot();
-<<<<<<< HEAD
-        }        
-=======
         }
-        
-        
->>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
 
     }
+
+
+
+
 
     void Shoot() {
         SFXlaser.Play();
@@ -98,14 +89,13 @@ public class Weapon : MonoBehaviour {
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit,Mathf.Infinity, layerMask))
-        {
+        if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit, Mathf.Infinity, layerMask)) {
             GameObject lsr = Instantiate(laser, muzzle_pos.transform.position, muzzle_pos.transform.rotation);
             lr = lsr.GetComponent<LineRenderer>();
 
             lsr.GetComponent<Laser>().positions[0] = muzzle_pos.position;
             lsr.GetComponent<Laser>().positions[1] = hit.point;
-            
+
             if (lsr.GetComponent<ParticleSystem>()) {
                 var ps = lsr.GetComponent<ParticleSystem>().main;
                 ps.startColor = GameManager.colors[color];
@@ -115,32 +105,26 @@ public class Weapon : MonoBehaviour {
             while (hit.collider.tag == "Barrier") {
                 GameObject ob = hit.collider.gameObject;
                 Interactable hit_interactable = hit.collider.gameObject.GetComponent<Interactable>();
-                if ((hit_interactable.type == Interactable.Type.Laser_Barrier && hit_interactable.color == color) || hit_interactable.type == Interactable.Type.Player_Barrier)
-                {
+                if ((hit_interactable.type == Interactable.Type.Laser_Barrier && hit_interactable.color == color) || hit_interactable.type == Interactable.Type.Player_Barrier) {
                     ob.layer = LayerMask.NameToLayer("RayCastIgnore");
 
                     Vector3 incomingVec = fpscam.transform.forward;
-                    if (Physics.Raycast(hit.point, incomingVec, out hit, Mathf.Infinity, layerMask))
-                    {
+                    if (Physics.Raycast(hit.point, incomingVec, out hit, Mathf.Infinity, layerMask)) {
                         lsr.GetComponent<Laser>().positions[1] = hit.point;
                     }
                     ob.layer = 0;
-                }
-                else
-                {
+                } else {
                     break;
                 }
             }
 
             //check for mirror
-            if (hit.collider.tag == "Mirror")
-            {
+            if (hit.collider.tag == "Mirror") {
                 Vector3 incomingVec = fpscam.transform.forward;
                 Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
 
-                if (Physics.Raycast(hit.point, reflectVec, out hit))
-                {
-                    
+                if (Physics.Raycast(hit.point, reflectVec, out hit)) {
+
                     lsr.GetComponent<Laser>().positions[2] = hit.point;
 
                     //check for barriers after mirror
@@ -155,50 +139,43 @@ public class Weapon : MonoBehaviour {
                             }
 
                             ob.layer = 0;
-                        }
-                        else
-                        {
+                        } else {
                             break;
                         }
                     }
 
 
-                    
+
                 }
             }
 
 
-            
+
 
             ////check for Interactables
             if (hit.collider.tag == "Interactable") {
                 Interactable hit_interactable = hit.collider.gameObject.GetComponent<Interactable>();
                 if (hit_interactable.color == color) {
                     Laser lsr_script = lsr.GetComponent<Laser>();
-                    float distance = Vector3.Distance(lsr_script.positions[0], lsr_script.positions[1]) ;
+                    float distance = Vector3.Distance(lsr_script.positions[0], lsr_script.positions[1]);
                     distance += Vector3.Distance(lsr_script.positions[1], lsr_script.positions[2]);
                     distance -= lsr_script.length * 2;
-                    coroutine = Interact(distance / GameManager.laserspeed,hit_interactable);
+                    coroutine = Interact(distance / GameManager.laserspeed, hit_interactable);
                     StartCoroutine(coroutine);
                 }
 
             }
-            
+
             //set colors
             lr.startColor = GameManager.colors[color];
-            lr.endColor = GameManager.colors[color];           
+            lr.endColor = GameManager.colors[color];
 
         }
-<<<<<<< HEAD
-    }   
-=======
     }
 
-   
->>>>>>> d93d76ee93e6361f820c05667a4112a3808649e1
 
-    private IEnumerator Interact(float waitTime,Interactable hit_interactable)
-    {
+
+    private IEnumerator Interact(float waitTime, Interactable hit_interactable) {
         yield return new WaitForSeconds(waitTime);
         if (hit_interactable.type == Interactable.Type.Button) { GameManager.color_states[hit_interactable.color] = true; }
         if (hit_interactable.type == Interactable.Type.Lever) { GameManager.color_states[hit_interactable.color] = !GameManager.color_states[hit_interactable.color]; }
@@ -207,5 +184,6 @@ public class Weapon : MonoBehaviour {
             interactsound.Play();
         }
     }
+
 
 }
