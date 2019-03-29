@@ -39,11 +39,19 @@ public class Interactable : MonoBehaviour
             door.position = Vector3.Lerp(door.position, targetpos, 0.1f);
         }
 
+        if (type == Type.Lever) {
+            if (GameManager.color_states[color]) {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);                
+            } else {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 180);
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(type == Type.Laser_Barrier || other.tag == "Player")
         {
             GameManager.color_states[color] = false;
         }
